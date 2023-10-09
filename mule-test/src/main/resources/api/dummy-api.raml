@@ -1,0 +1,58 @@
+#%RAML 1.0
+title: dummy-api
+version: v1
+protocols:
+  - HTTP
+baseUri: /api
+
+/person:
+  get:   
+    queryParameters:
+      firstName:
+        displayName: Query for the firstName3232
+        type: string
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include person.json 
+      400:
+        description: Bad request
+        body:
+          application/json:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Bad request
+  post:
+    body:
+      application/json:
+        type: !include person.json
+    responses:
+
+
+/item:
+  get:
+    queryParameters:
+      sku:
+        type: string
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include item.json
+      400:
+        body:
+          application/json:
+            type: object
+            properties:
+              message:
+                type: string
+                example: item not found
+  post:
+    body:
+      application/json:
+        type: !include item.json
+                  
+      
